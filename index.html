@@ -45,48 +45,47 @@
     </div>
     <script>
       // Define the target date as 35 days from now
-      var targetDate = new Date();
-      targetDate.setDate(targetDate.getDate() + 90);
+var targetDate = new Date();
+targetDate.setDate(targetDate.getDate() + 35);
 
-      // Define a function to update the timer
-      function updateTimer() {
-        // Get the current date and time
-        var currentDate = new Date();
+// Define a function to update the timer
+function updateTimer() {
+  // Get the current date and time
+  var currentDate = new Date();
 
-        // Calculate the difference between the target date and the current date in milliseconds
-        var diff = targetDate.getTime() - currentDate.getTime();
+  // Calculate the absolute value of the difference between the target date and the current date in milliseconds
+  var diff = Math.abs(targetDate.getTime() - currentDate.getTime());
 
-        // Check if the target date has passed
-        if (diff <= 0) {
-          // Clear the timer and display a message
-          clearInterval(timer);
-          document.getElementById("timer").innerHTML = "Time's up!";
-        } else {
-          // Calculate the remaining days, hours, minutes and seconds
-          var days = Math.floor(diff / (1000 * 60 * 60 * 24));
-          var hours = Math.floor(
-            (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-          );
-          var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-          var seconds = Math.floor((diff % (1000 * 60)) / 1000);
+  // Check if the target date has passed
+  if (diff <= 0) {
+    // Clear the timer and display a message
+    clearInterval(timer);
+    document.getElementById("timer").innerHTML = "Time's up!";
+  } else {
+    // Calculate the remaining days, hours, minutes and seconds
+    var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-          // Display the timer with leading zeros if needed
-          document.getElementById("timer").innerHTML =
-            days.toString().padStart(2, "0") +
-            ":" +
-            hours.toString().padStart(2, "0") +
-            ":" +
-            minutes.toString().padStart(2, "0") +
-            ":" +
-            seconds.toString().padStart(2, "0");
-        }
-      }
+    // Display the timer with leading zeros if needed
+    document.getElementById("timer").innerHTML =
+      days.toString().padStart(2, "0") +
+      ":" +
+      hours.toString().padStart(2, "0") +
+      ":" +
+      minutes.toString().padStart(2, "0") +
+      ":" +
+      seconds.toString().padStart(2, "0");
+  }
+}
 
-      // Set up a timer to call the updateTimer function every second
-      var timer = setInterval(updateTimer, 1000);
+// Set up a timer to call the updateTimer function every second
+var timer = setInterval(updateTimer, 1000);
 
-      // Call the updateTimer function once to initialize the timer
-      updateTimer();
+// Call the updateTimer function once to initialize the timer
+updateTimer();
+
     </script>
   </body>
 </html>
